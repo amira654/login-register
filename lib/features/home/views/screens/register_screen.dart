@@ -14,38 +14,36 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool visible=false;
+  bool visible = true;
   final formKey = GlobalKey<FormState>();
-@override
+  @override
   void initState() {
     super.initState();
     emailController.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
     passwordController.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
+
   @override
   void dispose() {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding:  EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
           child: ListView(
             children: [
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(
                   top: 20.0,
                   left: 24.0,
@@ -56,17 +54,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     Text(
                       SignupInStrings.regTitle,
-                      style:  bodyStyle(),
+                      style: bodyStyle(),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
                     const Text(
-                      SignupInStrings.createAccountText ,
+                      SignupInStrings.createAccountText,
                       style: TextStyle(
                           fontWeight: FontWeight.w400, color: Colors.grey),
                     ),
-
                     const SizedBox(
                       height: 10,
                     ),
@@ -100,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   return null;
                 },
-                keyboard:TextInputType.number,
+                keyboard: TextInputType.number,
                 label: SignupInStrings.nationalIdLabel,
                 hint: SignupInStrings.nationalIdHint,
                 prefix: Icons.perm_identity_outlined,
@@ -117,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   return null;
                 },
-                keyboard:TextInputType.phone,
+                keyboard: TextInputType.phone,
                 label: SignupInStrings.phoneLabel,
                 hint: SignupInStrings.phoneHint,
                 prefix: Icons.phone,
@@ -133,8 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   }
                   return null;
                 },
-                keyboard:TextInputType.emailAddress,
-
+                keyboard: TextInputType.emailAddress,
                 label: SignupInStrings.emailLabel,
                 hint: SignupInStrings.emailHint,
                 prefix: Icons.email,
@@ -151,8 +147,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   }
                   return null;
                 },
-                keyboard:TextInputType.visiblePassword,
-
+                keyboard: TextInputType.visiblePassword,
+                obscureText: visible,
                 label: SignupInStrings.passwordLabel,
                 hint: SignupInStrings.passwordHint,
                 prefix: Icons.lock,
@@ -161,13 +157,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       visible = !visible;
                       setState(() {});
                     },
-                    icon: visible == true
+                    icon: visible == false
                         ? const Icon(
-                      Icons.remove_red_eye,
-                    )
+                            Icons.remove_red_eye,
+                          )
                         : const Icon(
-                      Icons.visibility_off,
-                    )),
+                            Icons.visibility_off,
+                          )),
                 controller: passwordController,
               ),
               const SizedBox(height: 20),
@@ -195,9 +191,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   }
                 },
                 child: Text(SignupInStrings.signUpButtonText),
-
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

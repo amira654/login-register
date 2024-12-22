@@ -18,61 +18,60 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final TextEditingController passwordController = TextEditingController();
 
-  bool visible=false;
+  bool visible = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 150,left: 20,right: 15),
+        padding: const EdgeInsets.only(top: 150, left: 20, right: 15),
         child: Form(
           key: formKey,
           child: ListView(
-            children: [ Padding(
-              padding: const EdgeInsets.only(
-                top: 20.0,
-                left: 24.0,
-                bottom: 24.0,
-                right: 24.0,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20.0,
+                  left: 24.0,
+                  bottom: 24.0,
+                  right: 24.0,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      SignupInStrings.logTitle,
+                      style: bodyStyle(),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      SignupInStrings.welcomeBack,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400, color: Colors.grey),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                children: [
-                  Text(
-                    SignupInStrings.logTitle,
-                    style:  bodyStyle(),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    SignupInStrings.welcomeBack ,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400, color: Colors.grey),
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
               CustomTextField(
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "please enter a value";
-                }
-                if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                  return "Enter a valid email";
-                }
-                return null;
-              },
-                keyboard:TextInputType.emailAddress,
-
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "please enter a value";
+                  }
+                  if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                    return "Enter a valid email";
+                  }
+                  return null;
+                },
+                keyboard: TextInputType.emailAddress,
                 label: SignupInStrings.emailLabel,
-              hint: SignupInStrings.emailHint,
-              prefix: Icons.email,
-              controller: emailController,
-            ),
+                hint: SignupInStrings.emailHint,
+                prefix: Icons.email,
+                controller: emailController,
+              ),
               const SizedBox(height: 20),
               CustomTextField(
                 validator: (value) {
@@ -84,25 +83,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                   return null;
                 },
-                keyboard:TextInputType.visiblePassword,
-
+                keyboard: TextInputType.visiblePassword,
                 label: SignupInStrings.passwordLabel,
                 hint: SignupInStrings.passwordHint,
                 prefix: Icons.lock,
+                obscureText: visible,
                 suffix: IconButton(
                     onPressed: () {
                       visible = !visible;
                       setState(() {});
                     },
-                    icon: visible == true
+                    icon: visible == false
                         ? const Icon(
-                      Icons.remove_red_eye,
-                    )
+                            Icons.remove_red_eye,
+                          )
                         : const Icon(
-                      Icons.visibility_off,
-                    )),                controller: passwordController,
+                            Icons.visibility_off,
+                          )),
+                controller: passwordController,
               ),
-
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
@@ -142,7 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   )
                 ],
               ),
-
             ],
           ),
         ),
