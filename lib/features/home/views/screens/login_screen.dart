@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nti_task/features/home/views/screens/register_screen.dart';
 
+import '../../../../cores/style/login_list.dart';
 import '../../../../cores/style/sign_up_in_string.dart';
 import '../../../../cores/style/text_style.dart';
 import '../../../../cores/widgets/custom_textField.dart';
@@ -56,51 +57,85 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              CustomTextField(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "please enter a value";
-                  }
-                  if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                    return "Enter a valid email";
-                  }
-                  return null;
-                },
-                keyboard: TextInputType.emailAddress,
-                label: SignupInStrings.emailLabel,
-                hint: SignupInStrings.emailHint,
-                prefix: Icons.email,
-                controller: emailController,
-              ),
-              const SizedBox(height: 20),
-              CustomTextField(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "please enter a value";
-                  }
-                  if (value.length < 8) {
-                    return "Password must be at least 8 characters long";
-                  }
-                  return null;
-                },
-                keyboard: TextInputType.visiblePassword,
-                label: SignupInStrings.passwordLabel,
-                hint: SignupInStrings.passwordHint,
-                prefix: Icons.lock,
-                obscureText: visible,
-                suffix: IconButton(
-                    onPressed: () {
-                      visible = !visible;
-                      setState(() {});
-                    },
-                    icon: visible == false
-                        ? const Icon(
-                            Icons.remove_red_eye,
-                          )
-                        : const Icon(
-                            Icons.visibility_off,
-                          )),
-                controller: passwordController,
+              // CustomTextField(
+              //   validator: (value) {
+              //     if (value!.isEmpty) {
+              //       return "please enter a value";
+              //     }
+              //     if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+              //       return "Enter a valid email";
+              //     }
+              //     return null;
+              //   },
+              //   keyboard: TextInputType.emailAddress,
+              //   label: SignupInStrings.emailLabel,
+              //   hint: SignupInStrings.emailHint,
+              //   prefix: Icons.email,
+              //   controller: emailController,
+              // ),
+              // const SizedBox(height: 20),
+              // CustomTextField(
+              //   validator: (value) {
+              //     if (value!.isEmpty) {
+              //       return "please enter a value";
+              //     }
+              //     if (value.length < 8) {
+              //       return "Password must be at least 8 characters long";
+              //     }
+              //     return null;
+              //   },
+              //   keyboard: TextInputType.visiblePassword,
+              //   label: SignupInStrings.passwordLabel,
+              //   hint: SignupInStrings.passwordHint,
+              //   prefix: Icons.lock,
+              //   obscureText: visible,
+              //   suffix: IconButton(
+              //       onPressed: () {
+              //         visible = !visible;
+              //         setState(() {});
+              //       },
+              //       icon: visible == false
+              //           ? const Icon(
+              //               Icons.remove_red_eye,
+              //             )
+              //           : const Icon(
+              //               Icons.visibility_off,
+              //             )),
+              //   controller: passwordController,
+              // ),
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  itemCount: loginFields.length,
+                  itemBuilder: (context, index) {
+                    final loginfield = loginFields[index];
+                    if (loginfield.label == SignupInStrings.passwordLabel) {
+                      loginfield.suffix = IconButton(
+                        onPressed: () {
+                          setState(() {
+                            loginfield.obscureText = !loginfield.obscureText;
+                          });
+                        },
+                        icon: Icon(
+                          loginfield.obscureText ? Icons.visibility_off : Icons.visibility,
+                        ),
+                      );
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: CustomTextField(
+                        label: loginfield.label,
+                        hint: loginfield.hint,
+                        prefix: loginfield.prefix,
+                        suffix: loginfield.suffix,
+                        controller: loginfield.controller,
+                        keyboard: loginfield.keyboard,
+                        obscureText: loginfield.obscureText,
+                        validator: loginfield.validator,
+                      ),
+                    );
+                  },
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(

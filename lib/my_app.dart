@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'features/home/models/register_model.dart';
 import 'features/home/views/screens/login_screen.dart';
 import 'features/home/views/screens/register_screen.dart';
 
