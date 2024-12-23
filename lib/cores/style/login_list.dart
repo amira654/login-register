@@ -6,8 +6,8 @@ import '../../features/home/models/login_model.dart';
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 
-final List<LoginFieldModel> loginFields = [
-  LoginFieldModel(
+final List<BMIFieldModel> loginFields = [
+  BMIFieldModel(
     label: SignupInStrings.emailLabel,
     hint: SignupInStrings.emailHint,
     prefix: Icons.email,
@@ -19,7 +19,7 @@ final List<LoginFieldModel> loginFields = [
       return null;
     },
   ),
-  LoginFieldModel(
+  BMIFieldModel(
     label: SignupInStrings.passwordLabel,
     hint: SignupInStrings.passwordHint,
     prefix: Icons.lock,

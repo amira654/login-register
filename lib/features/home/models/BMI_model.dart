@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BMIFieldModel {
+class BMIModel {
   final String label;
   final String hint;
   final IconData prefix;
@@ -10,7 +10,7 @@ class BMIFieldModel {
   final TextInputType? keyboard;
   final String? Function(String?)? validator;
 
-  BMIFieldModel({
+  BMIModel({
     required this.label,
     required this.hint,
     required this.prefix,

@@ -28,4 +28,10 @@ class SignupInStrings {
   static const welcomeBack = "Hi! Welcome back,you'v been missed";
   static const logInToAccount = "Already have an account?";
   static const regToAccount = "Don't have an account?";
+
+
+
+
+
+
 }
